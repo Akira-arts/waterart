@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Hiragino Sans'; -webkit-text-stroke: #000000}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 12.0px 'Hiragino Sans'; font-kerning: none}
+    span.s3 {font: 12.0px Helvetica; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="ja"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;</span><span class="s2">水の音サウンドエクスプローラー</span><span class="s1">&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100vw;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 100vh;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overflow: hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #0077be, #00a6ed);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: white;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>flex-direction: column;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: background 0.3s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>#soundArea {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>#instructions {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>top: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: rgba(0,0,0,0.5);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 5px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 10;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>#startButton, #stopButton {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-right: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>#cursor {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 50%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: white;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>pointer-events: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: transform 0.1s ease-out;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 20;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>#visualizer {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>bottom: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>left: 5%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 90%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 150px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: rgba(255, 255, 255, 0.1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 5px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="instructions"&gt;</span></p>
+<p class="p2"><span class="s3"><span class="Apple-converted-space">        </span>&lt;p&gt;</span><span class="s1">「開始」ボタンをクリックしてから、マウスを動かして水の音を探索してください</span><span class="s3">:&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;</span><span class="s2">左右</span><span class="s1">: </span><span class="s2">穏やかな波</span><span class="s1"> </span><span class="s2">↔</span><span class="s1"> </span><span class="s2">激しい波</span><span class="s1"> | </span><span class="s2">上下</span><span class="s1">: </span><span class="s2">滝</span><span class="s1"> </span><span class="s2">↔</span><span class="s1"> </span><span class="s2">雨</span><span class="s1">&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button id="startButton"&gt;</span><span class="s2">開始</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button id="stopButton" disabled&gt;</span><span class="s2">停止</span><span class="s1">&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="soundArea"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="cursor"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;canvas id="visualizer"&gt;&lt;/canvas&gt;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let audioContext;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let sounds = {};</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let analyser;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let isPlaying = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const cursor = document.getElementById('cursor');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const soundArea = document.getElementById('soundArea');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const startButton = document.getElementById('startButton');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const stopButton = document.getElementById('stopButton');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const visualizer = document.getElementById('visualizer');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const canvasCtx = visualizer.getContext('2d');</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function initAudio() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>audioContext = new (window.AudioContext || window.webkitAudioContext)();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>analyser = audioContext.createAnalyser();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>analyser.connect(audioContext.destination);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>createWaterSound('calmWaves', 200, 0.005);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>createWaterSound('roughWaves', 100, 0.05);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>createWaterSound('waterfall', 1000, 0.01);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>createRainSound();</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>setupEventListeners();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>resizeCanvas();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>visualize();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function createWaterSound(type, filterFrequency, modulationSpeed) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const noise = audioContext.createBufferSource();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>noise.buffer = createNoiseBuffer(2);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>noise.loop = true;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const filter = audioContext.createBiquadFilter();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>filter.type = 'lowpass';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>filter.frequency.value = filterFrequency;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const gain = audioContext.createGain();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gain.gain.value = 0;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const modulator = audioContext.createOscillator();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>modulator.type = 'sine';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>modulator.frequency.value = modulationSpeed;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const modulatorGain = audioContext.createGain();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>modulatorGain.gain.value = filterFrequency / 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>modulator.connect(modulatorGain);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>modulatorGain.connect(filter.frequency);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>modulator.start();</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>noise.connect(filter);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>filter.connect(gain);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gain.connect(analyser);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>noise.start();</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>sounds[type] = { source: noise, gain: gain, filter: filter, modulator: modulator };</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function createRainSound() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const gain = audioContext.createGain();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gain.gain.value = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gain.connect(analyser);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>sounds['rain'] = { gain: gain };</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function createRainDrop() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!isPlaying) return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const osc = audioContext.createOscillator();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const oscGain = audioContext.createGain();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>osc.type = 'triangle';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>osc.frequency.value = Math.random() * 2000 + 500;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>oscGain.gain.value = 0;</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>osc.connect(oscGain);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>oscGain.connect(gain);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const now = audioContext.currentTime;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>osc.start(now);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>oscGain.gain.setValueAtTime(0, now);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>oscGain.gain.linearRampToValueAtTime(0.1 * Math.random(), now + 0.001);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>oscGain.gain.linearRampToValueAtTime(0, now + 0.1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>osc.stop(now + 0.1);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (isPlaying) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>setTimeout(createRainDrop, 20);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>createRainDrop();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function createNoiseBuffer(duration) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const sampleRate = audioContext.sampleRate;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const bufferSize = sampleRate * duration;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const buffer = audioContext.createBuffer(1, bufferSize, sampleRate);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const data = buffer.getChannelData(0);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>for (let i = 0; i &lt; bufferSize; i++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>data[i] = Math.random() * 2 - 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return buffer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function setupEventListeners() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>soundArea.addEventListener('mousemove', updateSounds);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>soundArea.addEventListener('touchmove', (e) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>e.preventDefault();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>updateSounds(e.touches[0]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function updateBackgroundColor(x, y) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const r = Math.round(255 * x / window.innerWidth);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const g = Math.round(255 * (1 - y / window.innerHeight));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const b = Math.round(255 * (0.5 + 0.5 * Math.sin(x * y / 1000)));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.body.style.background = `linear-gradient(135deg, rgb(${r},${g},${b}), rgb(${b},${r},${g}))`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function updateSounds(e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!audioContext || audioContext.state !== 'running' || !isPlaying) return;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const rect = soundArea.getBoundingClientRect();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const x = (e.clientX - rect.left) / rect.width;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const y = (e.clientY - rect.top) / rect.height;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>sounds.calmWaves.gain.gain.setTargetAtTime(0.5 * (1 - x), audioContext.currentTime, 0.1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>sounds.roughWaves.gain.gain.setTargetAtTime(0.5 * x, audioContext.currentTime, 0.1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>sounds.waterfall.gain.gain.setTargetAtTime(0.5 * (1 - y), audioContext.currentTime, 0.1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>sounds.rain.gain.gain.setTargetAtTime(0.2 * y, audioContext.currentTime, 0.1);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>updateBackgroundColor(e.clientX, e.clientY);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const r = Math.round(x * 255);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const g = Math.round((1 - y) * 255);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const b = Math.round(255);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function visualize() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>analyser.fftSize = 1024;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const bufferLength = analyser.frequencyBinCount;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const dataArray = new Uint8Array(bufferLength);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>function draw() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>if (!isPlaying) return;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>requestAnimationFrame(draw);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>analyser.getByteFrequencyData(dataArray);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.clearRect(0, 0, visualizer.width, visualizer.height);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.fillStyle = 'rgba(0, 10, 30, 0.2)';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.fillRect(0, 0, visualizer.width, visualizer.height);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const gradient = canvasCtx.createLinearGradient(0, 0, visualizer.width, 0);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>gradient.addColorStop(0, "rgba(0, 255, 255, 0.8)");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>gradient.addColorStop(0.2, "rgba(0, 191, 255, 0.8)");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>gradient.addColorStop(0.4, "rgba(30, 144, 255, 0.8)");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>gradient.addColorStop(0.6, "rgba(0, 127, 255, 0.8)");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>gradient.addColorStop(0.8, "rgba(135, 206, 250, 0.8)");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>gradient.addColorStop(1, "rgba(173, 216, 230, 0.8)");</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.beginPath();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.moveTo(0, visualizer.height);</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>const sliceWidth = visualizer.width / bufferLength;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>let x = 0;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>for (let i = 0; i &lt; bufferLength; i++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const v = dataArray[i] / 128.0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const y = visualizer.height - v * visualizer.height / 2;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (i === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>canvasCtx.moveTo(x, y);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>canvasCtx.lineTo(x, y);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>x += sliceWidth;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.lineTo(visualizer.width, visualizer.height);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.closePath();</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.fillStyle = gradient;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.fill();</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.beginPath();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.moveTo(0, visualizer.height);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>x = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>for (let i = 0; i &lt; bufferLength; i++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const v = dataArray[i] / 128.0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>const y = visualizer.height - v * visualizer.height / 2;</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (i === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>canvasCtx.moveTo(x, y);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>canvasCtx.lineTo(x, y);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>x += sliceWidth;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.strokeStyle = 'rgba(255, 255, 255, 0.5)';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.lineWidth = 2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.stroke();</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.globalCompositeOperation = 'screen';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.fillStyle = 'rgba(255, 255, 255, 0.1)';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.fillRect(0, visualizer.height - 20, visualizer.width, 20);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>canvasCtx.globalCompositeOperation = 'source-over';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>draw();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>startButton.addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (!audioContext) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>initAudio();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (audioContext.state === 'suspended') {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>audioContext.resume();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>isPlaying = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>this.disabled = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>stopButton.disabled = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>soundArea.style.cursor = 'none';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>visualize();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>createRainSound();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>stopButton.addEventListener('click', function() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (audioContext) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>isPlaying = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>Object.values(sounds).forEach(sound =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (sound.gain) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>sound.gain.gain.setValueAtTime(0, audioContext.currentTime);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (sound.source) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>sound.source.stop();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>if (sound.modulator) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                        </span>sound.modulator.stop();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>audioContext.close().then(() =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>audioContext = null;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>sounds = {};</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>analyser = null;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>startButton.disabled = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>this.disabled = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>soundArea.style.cursor = 'default';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>function resizeCanvas() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>visualizer.width = window.innerWidth * 0.9;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>visualizer.height = 150;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (analyser &amp;&amp; isPlaying) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>visualize();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.addEventListener('resize', resizeCanvas);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>resizeCanvas();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
